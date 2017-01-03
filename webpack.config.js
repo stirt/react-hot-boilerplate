@@ -1,12 +1,14 @@
+/* eslint-disable */
+
 var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   entry: [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
-    './src/index'
+    './src/js/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -23,6 +25,13 @@ module.exports = {
       test: /\.jsx?$/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
+    },
+    {
+      test: /\.scss$/,
+      loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap'],
     }]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.json']
   }
 };
